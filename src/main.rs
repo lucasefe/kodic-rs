@@ -1,6 +1,8 @@
 use std::env;
 use std::process;
 
+static VALID_COMMANDS: &'static [ &'static str ] = &["version"];
+
 // TODO: Check for proper error code to exit with. 
 fn exit_with_error(message: &str) {
     println!("ERR: {}", message);
@@ -8,12 +10,12 @@ fn exit_with_error(message: &str) {
 }
 
 fn run(command: &str) {
-    let valid_commands = &vec!["version"];
-    
-    if !valid_commands.contains(&command) {
+    if !&VALID_COMMANDS.contains(&command) {
         exit_with_error(&format!("Invalid command: {}", command));
     }
-    println!("{}", command);
+    
+    println!("Executing command: {}", command);
+
 }
 
 // parse action
