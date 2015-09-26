@@ -1,0 +1,4 @@
+[package]
+name = "kodic-rs"
+version = "0.1.0"
+authors = ["Lucas Florio <lucasefe@gmail.com>"]
