@@ -2,3 +2,7 @@
 name = "kodic-rs"
 version = "0.1.0"
 authors = ["Lucas Florio <lucasefe@gmail.com>"]
+
+[dependencies]
+hyper = "0.6.14"
+rustc-serialize = "0.3"
