@@ -6,7 +6,6 @@ use std::process;
 use std::io::Read;
 use rustc_serialize::json;
 use hyper::header::{Headers, Authorization, Basic, ContentType};
-use hyper::mime::{Mime, TopLevel, SubLevel, Attr, Value};
 use hyper::Client;
 
 static VALID_COMMANDS: &'static [ &'static str ] = &["version"];
@@ -39,7 +38,7 @@ fn run(command: &str) {
 
     let client = Client::new();
     let mut headers = Headers::new();
-    headers.set(ContentType(Mime(TopLevel::Application, SubLevel::Json, vec![(Attr::Charset, Value::Utf8)])));
+    headers.set(ContentType::json());
     headers.set(
         Authorization(
             Basic { 
