@@ -7,7 +7,7 @@ use std::process;
 mod commands;
 mod client;
 
-static VALID_COMMANDS: &'static [ &'static str ] = &["version"];
+static VALID_COMMANDS: &'static [ &'static str ] = &["version", "videos.scan"];
 
 // TODO: Check for proper error code to exit with.
 fn exit_with_error(message: &str) {
@@ -22,11 +22,17 @@ fn run(command: &str) {
 
     println!("Executing command: {}", command);
 
-    let request = commands::version::Request::new();
-    let data = client::execute(request);
-    let response = commands::version::Response::new(data);
-
-    println!("Version: {}", response);
+    if command == "version" {
+        let request = commands::version::Request::new();
+        let data = client::execute(request);
+        let response = commands::version::Response::new(data);
+        println!("Response: {}", response);
+    } else if command == "videos.scan" {
+        let request = commands::videos::scan::Request::new();
+        let data = client::execute(request);
+        let response = commands::common::Response::new(data);
+        println!("Response: {}", response);
+    }
 }
 
 fn main() {

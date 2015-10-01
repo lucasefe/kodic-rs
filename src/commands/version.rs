@@ -7,9 +7,9 @@ static PATCH_KEY: &'static [ &'static str ] = &["result", "version", "patch"];
 
 #[derive(RustcDecodable, RustcEncodable, Debug)]
 pub struct Request {
+    id: u64,
     jsonrpc: String,
     method: String,
-    id: u64
 }
 
 #[derive(Debug)]
