@@ -9,9 +9,9 @@ mod client;
 
 static VALID_COMMANDS: &'static [ &'static str ] = &["version"];
 
-// TODO: Check for proper error code to exit with. 
+// TODO: Check for proper error code to exit with.
 fn exit_with_error(message: &str) {
-    println!("ERR: {}", message);
+    println!("ERR: {}", message);    
     process::exit(1);
 }
 
@@ -19,9 +19,9 @@ fn run(command: &str) {
     if !&VALID_COMMANDS.contains(&command) {
         exit_with_error(&format!("Invalid command: {}", command));
     }
-    
+
     println!("Executing command: {}", command);
-    
+
     let request = commands::version::Request::new();
     let data = client::execute(request);
     let response = commands::version::Response::new(data);

@@ -1,8 +1,7 @@
-use commands;
 use hyper::Client;
 use hyper::header::{Headers, Authorization, Basic, ContentType};
+use rustc_serialize::{Encodable,json};
 use rustc_serialize::json::Json;
-use rustc_serialize::json;
 use std::io::Read;
 
 fn build_headers<'a>() -> Headers {
@@ -13,8 +12,7 @@ fn build_headers<'a>() -> Headers {
         Authorization(
             Basic { username: "xbmc".to_owned(), password: Some("xbmc".to_owned()) }
         )
-    );
-
+    ); 
     headers
 }
 
@@ -22,7 +20,7 @@ fn build_client<'a>() -> Client {
     Client::new()
 }
 
-pub fn execute<'a>(request: commands::version::Request) -> Json {
+pub fn execute<T:Encodable>(request: T) -> Json {
     let client = build_client();
     let headers = build_headers();
     let body = json::encode(&request).unwrap();
@@ -35,7 +33,3 @@ pub fn execute<'a>(request: commands::version::Request) -> Json {
     result.read_to_string(&mut buffer).unwrap();
     Json::from_str(&buffer).unwrap()
 }
-
-    
-
-    

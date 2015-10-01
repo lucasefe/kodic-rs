@@ -14,15 +14,15 @@ pub struct Request {
 
 #[derive(Debug)]
 pub struct Response {
-    major: u64, 
-    minor: u64, 
+    major: u64,
+    minor: u64,
     patch: u64
 }
 
 impl Request {
     pub fn new() -> Request {
         Request {
-            jsonrpc: "2.0".to_string(), 
+            jsonrpc: "2.0".to_string(),
             method:  "JSONRPC.Version".to_string(),
             id: 1
         }
